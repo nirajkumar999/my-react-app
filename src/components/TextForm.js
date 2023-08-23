@@ -4,18 +4,18 @@ export default function TextForm(props) {
 
   const[text,setText] = useState('')
   
-  const handleUpClick = ()=>{
+  const handleUpClick = () =>{
     // console.log("Uppercase was clicked")
     setText(text.toUpperCase());
   }
 
   
-  const handleLoClick = ()=>{
+  const handleLoClick = () =>{
     // console.log("Lowercase was clicked")
     setText(text.toLowerCase());
   } 
 
-  const handleClearClick = ()=>{
+  const handleClearClick = () =>{
     // console.log("Clear was clicked")
     setText("");
   } 
@@ -24,6 +24,20 @@ export default function TextForm(props) {
     // console.log("On change");
     setText(event.target.value);
   }
+
+  const handleCopy = () => {
+    // console.log("copy was clicked");
+    var text = document.getElementById("myBox");
+    text.select();
+    navigator.clipboard.writeText(text.value)
+  }
+
+  
+  const handleExtraSpaces = () => {
+    // console.log("remove extra space was clicked");
+    setText(text.split(/[ ]+/).join(" "))
+  }
+
   return (
     <>
     <div>
@@ -32,12 +46,19 @@ export default function TextForm(props) {
         <textarea className="form-control" onChange={handleOnChange} value={text} id="myBox" rows="4" ></textarea>
       </div>
       <button className="btn btn-primary" onClick={handleUpClick}>To Uppercase</button> 
-      <span style={{ margin: '0 10px' }}></span> {/* Adding a space */}
+      <span style={{ margin: '0 6px' }}></span> {/* Adding a space */}
       
       <button className="btn btn-primary" onClick={handleLoClick}>To Lowercase</button>
-      <span style={{ margin: '0 10px' }}></span> {/* Adding a space */}
+      <span style={{ margin: '0 6px' }}></span> {/* Adding a space */}
       
+      <button className="btn btn-primary" onClick={handleCopy}>Copy Text</button>
+      <span style={{ margin: '0 6px' }}></span> {/* Adding a space */}
+
+      <button className="btn btn-primary" onClick={handleExtraSpaces}>Remove Extra Spaces</button>
+      <span style={{ margin: '0 6px' }}></span> {/* Adding a space */}
+       
       <button className="btn btn-primary" onClick={handleClearClick}>Clear</button>
+
     </div>
     <div>
       <h1>Your Text Summary</h1>
