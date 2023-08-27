@@ -7,8 +7,6 @@ import React, {useState} from 'react';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 
-
-
 function App() {
   const [mode, setMode] = useState('light'); // if dark mode is enabled or not
   
@@ -47,13 +45,13 @@ function App() {
           <Alert alert={alert} />
           <div className="container my-4">
             <Routes>
-              <Route exact path="/about" element={<About />}></Route>
+              <Route exact path="/about" element={<About mode={mode} />}></Route>
               <Route
                 exact path="/"
                 element={
                   <TextForm
                     showAlert={showAlert}
-                    heading="Enter your text"
+                    heading="Try TextUtils"
                     mode={mode}
                   />
                 }
